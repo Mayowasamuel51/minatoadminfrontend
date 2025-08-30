@@ -2,11 +2,32 @@ import { FaUserCheck } from "react-icons/fa6";
 import { BsTruck } from "react-icons/bs";
 import StudentTable from "./StudentTable";
 import FetchAllStudents from "../hooks/FetchAllStudents";
+import { Users, BookOpen, TrendingUp, GraduationCap } from "lucide-react";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 const AdminDashboard = () => {
-    const {data} = FetchAllStudents()
+    const { data } = FetchAllStudents()
+
+    const stats = [
+        {
+            title: "Total Students",
+            value: data?.data?.response.length || "0",
+            description: "Registered students",
+            icon: Users,
+            gradient: "dashboard-gradient",
+            trend: "+12% from last month"
+        },
+        {
+            title: "Active Courses",
+            value: "8",
+            description: "Available courses",
+            icon: BookOpen,
+            gradient: "dashboard-accent-gradient",
+            trend: "+2 new courses"
+        },
+    ]
     return (
-        <>
+        <section className="flex flex-col gap-6 py-6">
             <div className="">
                 <div className="md:p-5 p-2">
                     <div className="flex flex-wrap md:justify-start items-center gap-2">
@@ -37,7 +58,7 @@ const AdminDashboard = () => {
                     <StudentTable />
                 </div>
             </div>
-        </>
+        </section>
 
     )
 }

@@ -7,27 +7,72 @@ import { IoEyeSharp } from "react-icons/io5";
 import { FaTrash } from "react-icons/fa"
 import '@splidejs/react-splide/css';
 import moment from "moment";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { ChevronLeft, ChevronRight, Calendar, Mail, User, Shield } from 'lucide-react';
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from "@/components/ui/table";
 
 const StudentTable = () => {
     const [currentPage, setCurrentPage] = useState(1)
     const [postsPerPage] = useState(10)
     const { data, isLoading, error } = FetchAllStudents()
 
+    const getProviderColor = (provider) => {
+        switch (provider.toLowerCase()) {
+            case 'google':
+                return 'bg-red-100 text-red-800 border-red-200';
+            case 'facebook':
+                return 'bg-blue-100 text-blue-800 border-blue-200';
+            case 'github':
+                return 'bg-gray-100 text-gray-800 border-gray-200';
+            default:
+                return 'bg-gray-100 text-gray-800 border-gray-200';
+        }
+    };
+
+    const getInitials = (name) => {
+        return name
+            .split(' ')
+            .map(word => word[0])
+            .join('')
+            .toUpperCase()
+            .slice(0, 2);
+    };
+
 
     if (error) return <p className='text-center text-red-500 md:text-3xl font-black'>{error.message}</p>
     if (isLoading) return <Loader />
     if (data?.status === 500) return <ServerErrorPage />
 
-
-
-    const lastPostIndex = currentPage * postsPerPage
-    const firstPostIndex = lastPostIndex - postsPerPage
-    const paginatedData = data?.data?.response?.slice(firstPostIndex, lastPostIndex)
     const length = data?.data?.response?.length || 1
+
+    const students = data?.data?.response || [];
+    const lastPostIndex = currentPage * postsPerPage;
+    const firstPostIndex = lastPostIndex - postsPerPage;
+    const paginatedData = students.slice(firstPostIndex, lastPostIndex);
+    const totalPages = Math.ceil(students.length / postsPerPage);
 
     const pageNumber = []
     for (let i = 1; i <= Math.ceil((length) / postsPerPage); i++) {
         pageNumber.push(i)
+    }
+
+    if (!data) {
+        return (
+            <div className="text-center py-12">
+                <User className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
+                <h3 className="text-lg font-semibold text-foreground mb-2">No Students Found</h3>
+                <p className="text-muted-foreground">There are no registered students at the moment.</p>
+            </div>
+        );
     }
 
     return (
@@ -61,34 +106,6 @@ const StudentTable = () => {
             </table>
             <div>
                 {!data && <h3 className="font-bold text-center md:text-3xl">No Data Available.</h3>}
-            </div>
-            <div className='relative text-sm text-center my-2 md:my-4 font-bold tracking-wider group'>
-                {pageNumber.length > 0 && <p>{currentPage} 0f {pageNumber.length} {pageNumber.length > 1 ? "pages" : "page" }</p>}
-                <div className="my-2 md:my-5">
-                    <Splide options={{
-                        drag: "free",
-                        pagination: false,
-                        perPage: 5,
-                        perMove: 3,
-                        gap: "20px",
-                        focus : 'center',
-                        trimSpace: false,
-                        arrows: pageNumber.length > 1 ? true : false,
-                        breakpoints: {
-                            768: {
-                              perPage: 4,
-                              perMove: 2,
-                              gap: "10px",
-                              focus: "none",
-                              trimSpace: pageNumber.length > 1 && true,
-                            },
-                        }
-                    }} className="">
-                        {pageNumber.map((num) => (
-                            <SplideSlide key={num}><button onClick={() => setCurrentPage(num)} key={num} className={`${currentPage === num && "bg-BLUE text-white px-3 py-2 rounded-md"} px-3 py-2 text-sm md:text-base font-bold`}>{num}</button></SplideSlide>
-                        ))}
-                    </Splide>
-                </div>
             </div>
         </div>
     )
