@@ -1,12 +1,12 @@
-import NavBar from "../components/NavBar";
+// import NavBar from "../components/NavBar";
 import { Link, NavLink, Navigate, Outlet } from "react-router-dom"
 import { useStateContext } from "../context/ContextProvider"
 import { getIdToken, GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup, signOut } from "firebase/auth";
 import { app } from "../../firebase.config";
 import { useEffect } from "react";
-import Footer from "../components/Footer";
+// import Footer from "../components/Footer";
 const api = 'http://localhost:8000/api/'
-import Messages from "../components/Messages";
+// import Messages from "../components/Messages";
 function AuthLayout() {
     const {  token ,  setToken , user, setUser } = useStateContext();
     if (!token) {
