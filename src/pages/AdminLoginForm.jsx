@@ -9,6 +9,7 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import { useForm } from "react-hook-form"
 import axios from 'axios';
 import { useStateContext } from '../context/ContextProvider';
+
 const api = import.meta.env.VITE_BACKEND_API_ROUTES;
 const AdminLoginForm = () => {
     const { setToken} = useStateContext();
@@ -49,7 +50,7 @@ const AdminLoginForm = () => {
             if (response.status === 422) {
                 setError(response.data.message)
             } else if (response.status === 403) {
-                setCheckPassword(response.data.message)
+                // setCheckPassword(response.data.message)
                 setError(response.data.message)
             }
 

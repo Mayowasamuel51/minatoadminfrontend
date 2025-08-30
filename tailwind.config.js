@@ -14,9 +14,13 @@ export default {
         BLUE: "#2d2065",
         courseText: "#d5d2e0",
         grayBG: "#e8e2e2"
+      },
+      fontFamily: {
+        sans: ['Plus Jakarta Sans', 'sans-serif'],
+        jost: ['Jost', 'sans-serif'],
       }
     },
+    
   },
-  plugins: [require("daisyui")],
 }
 
