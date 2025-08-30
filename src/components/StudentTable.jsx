@@ -36,9 +36,10 @@ const StudentTable = () => {
                 <thead className=''>
                     <tr className='font-black text-left'>
                         <th className='text-sm md:text-base tracking-wide p-1 md:p-2'>Registration Date</th>
-                        <th className='text-sm md:text-base tracking-wide p-1 md:p-2'>Student Name</th>
-                        <th className='text-sm md:text-base tracking-wide p-1 md:p-2 hidden md:block'>Email Address</th>
-                        <th className='text-sm md:text-base tracking-wide p-1 md:p-2'>Provider</th>
+                        <th className='text-sm md:text-base tracking-wide p-1 md:p-2'>Full Name</th>
+                        <th className='text-sm md:text-base tracking-wide p-1 md:p-2 k'>Email Address</th>
+                        <th className='text-sm md:text-base tracking-wide p-1 md:p-2 k'>Content</th>
+                        {/* <th className='text-sm md:text-base tracking-wide p-1 md:p-2'>Provider</th> */}
                     </tr>
                 </thead>
                 <tbody className='tbody'>
@@ -47,10 +48,10 @@ const StudentTable = () => {
                             <td data-cell="Registration Date" className='text-[13px] leading-7 md:text-sm font-medium  p-1 md:p-2'>   {moment(info.date)
                                 .utc()
                                 .format("YYYY-MM-DD")}</td>
-                            <td data-cell="Student Name" className='text-[13px] leading-7 md:text-sm font-medium  p-1 md:p-2'>{info.name}</td>
+                            <td data-cell="Student Name" className='text-[13px] leading-7 md:text-sm font-medium  p-1 md:p-2'>{info.fullname}</td>
                             <td data-cell="Email Address" className='text-[13px] leading-7 md:text-sm font-medium  p-1 hidden md:block md:p-2'>{info.email}</td>
 
-                            <td data-cell="Provider" className='text-[13px] leading-7 md:text-sm font-medium  p-1 md:p-2'>{info.provider}</td>
+                            <td data-cell="Provider" className='text-[13px] leading-7 md:text-sm font-medium  p-1 md:p-2'>{info.description}</td>
                             
                             {/* <td className='text-[13px] leading-7 md:text-sm font-medium  p-1 md:p-2'><IoEyeSharp size={20} /></td>
                             <td className='text-[13px] leading-7 md:text-sm font-medium  p-1 md:p-2'><FaTrash size={20} /></td> */}

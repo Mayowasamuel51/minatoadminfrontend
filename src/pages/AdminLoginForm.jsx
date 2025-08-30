@@ -62,7 +62,7 @@ const AdminLoginForm = () => {
             <motion.div initial="initial" animate="animate" exit={{ x: -100, }} className="border-2 border-black md:w-[400px] p-5 bg-white rounded-3xl">
                 <div className="flex items-center justify-between">
                     <div>
-                        <Link to="/"><img src={LOGO} className="w-[150px] pl-0" alt="" /></Link>
+                        <Link to="">MINATO FOUNDATION</Link>
                     </div>
                     <Link to="/">
                         <FaXmark size={30} />
