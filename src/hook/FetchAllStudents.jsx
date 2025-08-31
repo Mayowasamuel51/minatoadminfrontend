@@ -1,15 +1,16 @@
-import axios from 'axios'
-import {
-    useQuery,
-} from '@tanstack/react-query';
-
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 
 const FetchAllStudents = () => {
   return useQuery({
-    queryKey: ["students"],
-    queryFn: ()=> axios.get("http://127.0.0.1:8000/api/v1/")
-  })
-  
-}
+    queryKey: ["applications"],
+    queryFn: async () => {
+      const res = await axios.get(
+        "https://minatobackend-ixct.vercel.app/api/v1/applications"
+      );
+      return res.data.data; // ✅ return only the JSON body
+    },
+  });
+};
 
-export default FetchAllStudents
+export default FetchAllStudents;

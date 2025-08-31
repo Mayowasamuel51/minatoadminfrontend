@@ -25,6 +25,7 @@ const StudentTable = () => {
     const [postsPerPage] = useState(10)
     const { data, isLoading, error } = FetchAllStudents()
 
+    console.log(data)
     const getProviderColor = (provider) => {
         switch (provider.toLowerCase()) {
             case 'google':
@@ -69,8 +70,8 @@ const StudentTable = () => {
         return (
             <div className="text-center py-12">
                 <User className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
-                <h3 className="text-lg font-semibold text-foreground mb-2">No Students Found</h3>
-                <p className="text-muted-foreground">There are no registered students at the moment.</p>
+                <h3 className="text-lg font-semibold text-foreground mb-2">No Data Found</h3>
+                {/* <p className="text-muted-foreground">There are no registered students at the moment.</p> */}
             </div>
         );
     }
@@ -83,26 +84,33 @@ const StudentTable = () => {
                         <th className='text-sm md:text-base tracking-wide p-1 md:p-2'>Registration Date</th>
                         <th className='text-sm md:text-base tracking-wide p-1 md:p-2'>Full Name</th>
                         <th className='text-sm md:text-base tracking-wide p-1 md:p-2 k'>Email Address</th>
+                            <th className='text-sm md:text-base tracking-wide p-1 md:p-2 k'>Age</th>
                         <th className='text-sm md:text-base tracking-wide p-1 md:p-2 k'>Content</th>
                         {/* <th className='text-sm md:text-base tracking-wide p-1 md:p-2'>Provider</th> */}
                     </tr>
                 </thead>
-                <tbody className='tbody'>
-                    {paginatedData?.map((info, index) => (
-                        <tr key={index} className=''>
-                            <td data-cell="Registration Date" className='text-[13px] leading-7 md:text-sm font-medium  p-1 md:p-2'>   {moment(info.date)
-                                .utc()
-                                .format("YYYY-MM-DD")}</td>
-                            <td data-cell="Student Name" className='text-[13px] leading-7 md:text-sm font-medium  p-1 md:p-2'>{info.fullname}</td>
-                            <td data-cell="Email Address" className='text-[13px] leading-7 md:text-sm font-medium  p-1 hidden md:block md:p-2'>{info.email}</td>
+              <tbody className='tbody'>
+  {paginatedData?.map((info) => (
+    <tr key={info.id}>
+      <td data-cell="Registration Date" className='text-[13px] leading-7 md:text-sm font-medium p-1 md:p-2'>
+        {moment(info.created_at).format("YYYY-MM-DD")}
+      </td>
+      <td data-cell="fullname" className='text-[13px] leading-7 md:text-sm font-medium p-1 md:p-2'>
+        {info.fullname}
+      </td>
+      <td data-cell="Email Address" className='text-[13px] leading-7 md:text-sm font-medium p-1 hidden md:block md:p-2'>
+        {info.email}
+      </td>
+      <td data-cell="Age" className='text-[13px] leading-7 md:text-sm font-medium p-1 md:p-2'>
+        {info.age}
+      </td>
+      <td data-cell="Description" className='text-[13px] leading-7 md:text-sm font-medium p-1 md:p-2'>
+        {info.description}
+      </td>
+    </tr>
+  ))}
+</tbody>
 
-                            <td data-cell="Provider" className='text-[13px] leading-7 md:text-sm font-medium  p-1 md:p-2'>{info.description}</td>
-                            
-                            {/* <td className='text-[13px] leading-7 md:text-sm font-medium  p-1 md:p-2'><IoEyeSharp size={20} /></td>
-                            <td className='text-[13px] leading-7 md:text-sm font-medium  p-1 md:p-2'><FaTrash size={20} /></td> */}
-                        </tr>
-                    ))}
-                </tbody>
             </table>
             <div>
                 {!data && <h3 className="font-bold text-center md:text-3xl">No Data Available.</h3>}
