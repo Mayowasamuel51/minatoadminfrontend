@@ -17,12 +17,13 @@ import StudentCommentPage from "./components/StudentCommentPage";
 import DashboardCourses from "./dashboard/components/DashboardCourses";
 
 import { AnimatePresence } from "framer-motion";
+import MainHome from "./components/MainHome";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <HomeLayout />,
-    errorElement: <ErrorPage />,
+    element: <MainHome />,
+  errorElement: <ErrorPage />
   },
   {
     path: "/admin_LOGIN",

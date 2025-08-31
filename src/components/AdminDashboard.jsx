@@ -4,6 +4,7 @@ import StudentTable from "./StudentTable";
 import FetchAllStudents from "../hooks/FetchAllStudents";
 import { Users, BookOpen, TrendingUp, GraduationCap } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import ApplicationsTable from "./StudentTable";
 
 const AdminDashboard = () => {
     const { data } = FetchAllStudents()
@@ -55,7 +56,8 @@ const AdminDashboard = () => {
             <div className="my-5 md:my-0 px-2 md:px-5 md:flex items-start md:gap-6">
                 <div className="flex-1 md:p-5 md:min-h-[275px] bg-grayBG rounded-md mb-5 md:mb-0">
                     <h1 className="font-bold text-base md:text-xl md:mb-5 p-2">Registered Applicant from the site </h1>
-                    <StudentTable />
+                    {/* <StudentTable /> */}
+                    <ApplicationsTable/>
                 </div>
             </div>
         </section>

@@ -16,26 +16,26 @@ const navigationItems = [
         label: "Dashboard",
         isExact: true
     },
-    {
-        to: "viewcourses",
-        icon: MdOutlineViewList,
-        label: "Courses"
-    },
-    {
-        to: "allStudents",
-        icon: FaUsers,
-        label: "Students"
-    },
-    {
-        to: "contacts",
-        icon: FaUserGroup,
-        label: "Contacts"
-    },
-    {
-        to: "contractors",
-        icon: MdOutlineAnalytics,
-        label: "Contractors"
-    },
+    // {
+    //     to: "viewcourses",
+    //     icon: MdOutlineViewList,
+    //     label: "Courses"
+    // },
+    // {
+    //     to: "allStudents",
+    //     icon: FaUsers,
+    //     label: "Students"
+    // },
+    // {
+    //     to: "contacts",
+    //     icon: FaUserGroup,
+    //     label: "Contacts"
+    // },
+    // {
+    //     to: "contractors",
+    //     icon: MdOutlineAnalytics,
+    //     label: "Contractors"
+    // },
     {
         to: "send-links",
         icon: FaLink,
